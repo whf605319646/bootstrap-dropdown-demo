@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>bootstrap-dropdown-demo</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="dropdown.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@bootcss/www.bootcss.com@0.0.49/dist/ico/favicon.ico">
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .demo {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-group {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .exp-values {
+            display: flex;
+            position: absolute;
+            left: 60%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+        }
+
+        .exp-values p{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <div id="exp" class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                导出 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" data-type="0">任务统计导出</a></li>
+                <li><a href="#" data-type="1">网格统计导出</a></li>
+                <li><a href="#" data-type="2">人员统计导出</a></li>
+            </ul>
+        </div>
+
+        <div class="exp-values">
+            当前选中：
+            <p class="exp-type-text">--</p>
+            value：
+            <p class="exp-type-value">--</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(".dropdown-menu li a").bind("click", function () {
+        var _that = $(this);
+        if(!_that[0]) return;
+        var expTypeValue = _that[0].dataset["type"];
+        var expTypeText = _that[0].innerText;
+        var exp = { text: expTypeText, value: expTypeValue };
+        $(".exp-type-text").text(exp.text);
+        $(".exp-type-value").text(exp.value);
+        console.dir(exp);
+    });
+</script>
+
+</html>
